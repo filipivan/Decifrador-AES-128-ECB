@@ -1,0 +1,29 @@
+from Crypto.Cipher import AES
+import base64
+
+BLOCK_SIZE = 16
+PADDING = '0'
+
+def descriptografar(texto_encriptado, senha):
+    decodeAES = lambda c, e: c.decrypt(base64.b64decode(e))
+    cipher = AES.new(senha)
+    decoded = decodeAES(cipher, texto_encriptado)
+    texto = str(decoded.decode()).strip(PADDING)
+    return texto
+
+senha_validacao = 'ADS-Grupo-04-448'
+cifra_validacao = b'1xsedtC1eXsogUTMM5OuNNsQMyAnjbsCnPoDECRWDyxHQTKxhAfb+K0FVfbdH3XvyATdV4aauW4mknchRmOUuPMW3plZ5EXJEbSQRSJFKv7GVObF82Fvjt1UXWHssnIbYCu+vWO5Kpk6jy/IWVfNFsJfuyELKoUTGY7VPXpChtQofERr+xSKiHmhg7a1C6D0zeLRRDBfQOYiM2yCy+KUHY+7uJUqdtc8nmWxfSovsGtESDGaw8mGN5Vyj8NhWE1XB9zy2KKc7gvRVFl5ogXTDQ=='
+
+senha_facil = 'SI-ADS182-VGZFUF'
+cifra_facil = b'TVJs13K4WpOSz5c1gs1Ri6ximORCVk+r1bLR3/RmtSG3rkQFJmS1gMlfAMbe5OKz0jbWHiuTYgVgbYP1XQs9dJWn7HjkQmkIER0G5WstLGSoSYT/jDv0cToFMiWqkOheKbmr/X68WE9yBYjOKo5PZ0hxpOg4tV5/obq4hOAfZgECZpfYy0qpFmN8eFmqzoDKsra+ELml8rPYmGuw5LJK/ekE1zc6K6GPQZ85XOp5YrqkpJLQtFrNXjbZIjlkMlnWPCeeaxBPF3GxKuRNLLvbb9c4i8kigYqAgzeMsdY+7MlJpzLdq9xQFQVI4bOlsa/4WTMaJoywLaqX0MjJ3Uoh6g=='
+
+senha_medio = 'SI-ADS182-KT6LQW'
+cifra_medio = b'OTPo13y3UribI/7BRivfgiEJ3bF+KgYSyJ32/qERi85cBE79aRSsW8wVmBc1yBiJks5fxTDTGQOQ3O+PQMAwUTeZfWYxlGuMuDypX94sCN9kdx+BtmpFS6knGSbmYPLMsjUerBilDO+nf/AFgGIdNG+p0+nqtunuKqXdp7Q7R+UtKPellrArCjUlbcNNcOLsFzKZ2uRC1RrLxYRN2XJi0mODIeKGJ3twVmP62RWqxNFG/wlrQJEnuMu+JMmjySvuAeOlSMFPgUtqSwWFJAe9kTC2qKaNxDDTELMpLHj09QiKKaz4foQJu75i20To3jPRIVgXcwPrd9y+VH38GWAsVaWIUyYBl1mDanlW023a9c3VUEoPub0T/vfr/VlitJGcYlQYAH91Tpep5cEhB8lN9xrz3bDLIN/UHCBD9j4qgix71soGW2Psqrlm9z0ZMPs0pJzDITAJPDp3tkXnbgs9rGbPohsxQ3WGNrruhZM9FoVFT/fgXg9dkBzgLGuaxP2J3b4bFk6EsS17EGL5kBNjdtKQ+D0Gsq43rGShM7PfMZ1dZBpYUAFxu0n6lAMavrdXgdJkNxydTZuLjtV/Aq53w6oUy+qUpyM5kPdnHJqqr4hKCNtKySi1KpC22laqg3+B1wASfMBzl16DJQFPQfvM7Uo/cN2uWduKGqIf2zyds2cvQNqhHrgmUpNrr2JYTrB0P+nH+77KEYZJCIbgA+ZFJDXf2jQG4GrkRQaps/l5k/xeFEdiqBeajWu13WSyT2Uekd8/Fg05L+3+BmpKPHymMRwLOAIWw/aDBSqiau15aumBEsEjpIdAtLaBShWh4Zat1IjXItkxGu0X83bLq0rusAg96WD3EHES+DOkfjIneJYYmV/tBtmgqxYki9qjMKpGPoSwchEo+x56/13jcSB4S4ltSZt6Kgm5HW0oJY/mQMsda90hQ1fBFdawEmcb41Ed5dTxFvMYXTI5w9CzekEYHg=='
+
+senha_dificil = 'SI-ADS182-LSoajO'
+cifra_difil = b'dxWoS1MaBPPlSHgSfOiwtH5Lx8THLuHtiH1v54Lp6H3i5ihkn3OTKOK9+QDjEJUJgwUJo4900wcDHWr1RW/MvtYBIOoiM4sp8N7Z+2O9kco61WyT2+0onossy8HD3aDvFFoPThVly57DLD+WoYKPijU7hMwnLF98YtIiqQex7nuqvj74DqWAVDCQPedMKI6jG+vovVHki65UtpTCDSDFxn0KpVX934FqZos60W/byvFgDM2Fb0ktmInqP7Ohus/Q2JbTE5erlrXDw2tMmVgPbzXTPebMgbEBHJiblSrCfsA4SVZDw4dFk3tAUVPxuF02FN1ysujwGsWhWdjTGd5QkZY4i4fBwu17H/NZzlFIH+zBPEPgavg5tmpMkVw6BaBUo/itI/ujnVVapfN2KxSBkdAB5NowAPCd5t5JhsjVwpq+zlEON8uEpnKroVEMmmCU7wMqdkWaIm90DZm6Qlsfk+kZIaGDDienfJyPK5VlH13JtumPrJ6GISNnGVBRRjnw4ZIJ6g/t9PvPdV1RUoKOYbtyM8UQOC9ecA8M/M6OrfxhcCKhlmS73i9I6f2OoFxZHXyTCQE1UU4On5e0+O6GBteTScjVUyOASPyP2c0Pd73y0Jygu/1j1NGL2MFSPFUPkZWTrTG+gRqdOU5Uejg47AFyPIvWER2CgcxtTN64DFes2osJgCL91Q3p7XIcA9FA61krHhotbbEnvlCUSol6DKGYmmXELAQNDKrmUMjfqQyk8pcncT0Texu5Tr+6TGBu'
+
+print('Texto Validacao: ', descriptografar(cifra_validacao, senha_validacao))
+print('Texto Facil: ', descriptografar(cifra_facil, senha_facil))
+print('Texto Medio: ', descriptografar(cifra_medio, senha_medio))
+print('Texto Dificil: ', descriptografar(cifra_difil, senha_dificil))
